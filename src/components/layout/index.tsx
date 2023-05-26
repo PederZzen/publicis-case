@@ -1,11 +1,7 @@
 import Header from "./header";
 import { Wrapper } from "./style";
 
-interface IUsers {
-  children: any;
-}
-
-const Layout = ({ children }: IUsers) => {
+const Layout = ({ children }: any) => {
   return (
     <Wrapper>
       <Header />

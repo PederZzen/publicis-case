@@ -19,7 +19,6 @@ const Campaigns = () => {
         const campaignData = await apiClient.requestCampaigns();
         setCampaigns(campaignData);
         setIsLoading(false);
-        console.log(campaignData);
       } catch (err) {
         console.error(err);
         setIsLoading(false);

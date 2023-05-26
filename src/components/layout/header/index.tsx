@@ -3,33 +3,72 @@ import { Wrapper } from "./style";
 import { Modal } from "antd";
 import Login from "../../login";
 import { useState } from "react";
+import MenuIcon from "./menuIcon";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const user = localStorage.getItem("name");
+  const { windowWidth } = useWindowWidth();
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
+  const logOutUser = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+  const loggedIn = (
+    <div>
+      <p>{user}</p>
+      <p onClick={logOutUser} className="logOut">
+        Logout
+      </p>
+    </div>
+  );
+
+  const toggleMenu = () => {
+    if (showMenu) {
+      setShowMenu(false);
+    } else {
+      setShowMenu(true);
+    }
+  };
+
   return (
     <Wrapper>
-      <div>
-        <p onClick={showModal}>Login</p>
-        <Link to="/">Campains</Link>
-        <Link to="/users">Users</Link>
-        <Link to="/clients">Clients</Link>
+      <div
+        className="menu"
+        style={{ transform: showMenu ? `translateX(0)` : "" }}
+      >
+        {windowWidth < 1200 ? (
+          <div className="menuIcon">
+            <MenuIcon
+              style={{ transform: showMenu ? `rotate(180deg)` : "" }}
+              onClick={toggleMenu}
+            />
+          </div>
+        ) : (
+          ""
+        )}
+        <div>
+          <Link to="/">Campains</Link>
+          <Link to="/users">Users</Link>
+          <Link to="/clients">Clients</Link>
+        </div>
+        {user ? loggedIn : <p onClick={showModal}>Login</p>}
       </div>
       <Modal
         title="Login"
         open={isModalOpen}
-        onOk={handleOk}
+        footer={false}
         onCancel={handleCancel}
       >
         <Login />

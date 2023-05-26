@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { Colors } from "./utils/constants";
+import { colors } from "./utils/constants";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .button {
-        background-color: ${Colors.accent};
+        background-color: ${colors.accent};
         border: none;
         padding: 0.5rem;
         margin-bottom: 1rem;

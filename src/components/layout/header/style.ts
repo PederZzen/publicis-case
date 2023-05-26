@@ -1,19 +1,24 @@
 import styled from "styled-components";
-import { Colors } from "../../../utils/constants";
+import { colors } from "../../../utils/constants";
 
 export const Wrapper = styled.div`
-  width: 15rem;
+  width: 10rem;
   z-index: 2;
 
-  div {
-    display: flex;
-    flex-direction: column;
+  .menu {
     padding: 1.5rem;
-    background-color: ${Colors.main};
+    background-color: ${colors.main};
     height: 100vh;
     position: fixed;
-    width: 15rem;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
+    div {
+      display: flex;
+      flex-direction: column;
+    }
     * {
       margin-top: 1rem;
       color: white;
@@ -24,7 +29,38 @@ export const Wrapper = styled.div`
       cursor: pointer;
 
       &:hover {
-        color: ${Colors.contrast};
+        color: ${colors.contrast};
+      }
+    }
+
+    .logOut {
+      color: ${colors.contrast};
+      font-size: 1rem;
+    }
+  }
+
+  .menuIcon {
+    position: absolute;
+    right: -3rem;
+    top: -1rem;
+    background-color: ${colors.main};
+    height: 3.5rem;
+    border-radius: 0 0 0.5rem 0;
+
+    svg {
+      width: 3.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .menu {
+      transform: translateX(-100%);
+      transition: all 0.3s;
+
+      button {
+        position: absolute;
+        right: -5rem;
       }
     }
   }

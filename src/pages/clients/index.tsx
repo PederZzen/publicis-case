@@ -15,7 +15,6 @@ const Clients = () => {
         const clientData = await apiClient.requestClients();
         setClients(clientData);
         setIsLoading(false);
-        console.log(clientData);
       } catch (err) {
         console.error(err);
         setIsLoading(false);

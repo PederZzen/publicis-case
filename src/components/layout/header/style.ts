@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
       font-weight: 500;
       font-size: 1.2rem;
       transition: all 0.3s;
+      cursor: pointer;
 
       &:hover {
         color: ${Colors.contrast};

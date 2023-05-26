@@ -357,10 +357,20 @@ class ApiClient {
    * Returns user if match or else null
    */
   public async login(email: string, password: string): Promise<User | null> {
-    // TODO: (Optional task) Implement
-    return this.delay(this.simulatedRequestTime).then(() => {
-      throw new Error("Not implemented");
-    });
+    try {
+      await this.delay(this.simulatedRequestTime);
+
+      const user = this.users.find((u) => u.email === email);
+
+      if (user && user.password === password) {
+        return user;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Login error", error);
+      return null;
+    }
   }
 
   private delay(ms: number): Promise<void> {

@@ -4,10 +4,13 @@ import Loader from "../../components/loader";
 import { Wrapper } from "./style";
 import TableComponent from "../../components/table";
 import { ColumnsType } from "antd/es/table";
+import { Modal } from "antd";
+import NewCampaign from "./newCampaign";
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -24,6 +27,17 @@ const Campaigns = () => {
     };
     fetchCampaigns();
   }, []);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const columns: ColumnsType<Campaign> = [
     {
@@ -85,7 +99,17 @@ const Campaigns = () => {
   return (
     <Wrapper>
       <h1>Campaigns</h1>
-      <button className="button">Add campaign</button>
+      <button onClick={showModal} className="button">
+        Add campaign
+      </button>
+      <Modal
+        title="Add campaign"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <NewCampaign />
+      </Modal>
       <TableComponent data={data} columns={columns} />
     </Wrapper>
   );

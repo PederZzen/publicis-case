@@ -1,10 +1,12 @@
 import { ClipLoader } from "react-spinners";
+import { Wrapper } from "./style";
+import { Colors } from "../../utils/constants";
 
 const Loader = () => {
   return (
-    <div>
-      <ClipLoader size={100} color="black" />
-    </div>
+    <Wrapper>
+      <ClipLoader size={100} color={Colors.main} />
+    </Wrapper>
   );
 };
 

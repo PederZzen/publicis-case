@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ApiClient, Client } from "../../api-client";
 import Loader from "../../components/loader";
+import { ColumnsType } from "antd/es/table";
+import TableComponent from "../../components/table";
 
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
@@ -22,6 +24,31 @@ const Clients = () => {
     fetchClients();
   }, []);
 
+  const columns: ColumnsType<Client> = [
+    {
+      title: "Client",
+      dataIndex: "name",
+      key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),
+    },
+    {
+      title: "Campaign manager",
+      key: "campaignManager",
+      render: (client) => (
+        <>
+          <p>{client.defaultCampaignManager.name}</p>
+          <p>{client.defaultCampaignManager.email}</p>
+        </>
+      ),
+      sorter: (a, b) =>
+        a.defaultCampaignManager.name.localeCompare(
+          b.defaultCampaignManager.name
+        ),
+    },
+  ];
+
+  const data: Client[] = clients;
+
   if (isLoading) {
     return <Loader />;
   }
@@ -33,19 +60,7 @@ const Clients = () => {
   return (
     <div>
       <h1>Clients</h1>
-      <div>
-        {clients.map((client, idx) => {
-          return (
-            <div key={idx}>
-              <p>{client.name}</p>
-              <div>
-                <p>{client.defaultCampaignManager.name}</p>
-                <p>{client.defaultCampaignManager.email}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <TableComponent data={data} columns={columns} />
     </div>
   );
 };

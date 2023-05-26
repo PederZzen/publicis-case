@@ -1,4 +1,5 @@
 import Header from "./header";
+import { Wrapper } from "./style";
 
 interface IUsers {
   children: any;
@@ -6,10 +7,10 @@ interface IUsers {
 
 const Layout = ({ children }: IUsers) => {
   return (
-    <>
+    <Wrapper>
       <Header />
       {children}
-    </>
+    </Wrapper>
   );
 };
 

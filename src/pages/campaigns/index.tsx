@@ -11,6 +11,7 @@ const Campaigns = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = localStorage.getItem("name");
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -98,14 +99,19 @@ const Campaigns = () => {
   return (
     <Wrapper>
       <h1>Campaigns</h1>
-      <button onClick={showModal} className="button">
-        Add campaign
-      </button>
+      {user ? (
+        <button onClick={showModal} className="button">
+          Add campaign
+        </button>
+      ) : (
+        ""
+      )}
       <Modal
         title="Add campaign"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={false}
       >
         <NewCampaign />
       </Modal>

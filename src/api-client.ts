@@ -46,6 +46,7 @@ interface User {
    * (password hashing is not part of this case for the sake of simplicity, and is normally not handled by frontend code anyway)
    */
   password: string;
+  media?: string;
 }
 
 interface Campaign {
@@ -99,54 +100,72 @@ class ApiClient {
         name: "Davina Gwendoline",
         email: "davina.gwendoline@publicisgroupe.com",
         password: "bfsbw53",
+        media:
+          "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       },
       {
         id: 2,
         name: "Jaylah Suz",
         email: "jaylah.suz@publicisgroupe.com",
         password: "th3tg3ht3",
+        media:
+          "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
       },
       {
         id: 3,
         name: "Margie Jeremiah",
         email: "margie.jeremiah@publicisgroupe.com",
         password: "8jnjnvqaa5",
+        media:
+          "https://images.unsplash.com/photo-1546961329-78bef0414d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
       },
       {
         id: 4,
         name: "Lenard Nita",
         email: "lenard.nita@publicisgroupe.com",
         password: "6t4n64h75j43",
+        media:
+          "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
       },
       {
         id: 5,
         name: "Leann Adamina",
         email: "leann.adamina@publicisgroupe.com",
         password: "asa533g3",
+        media:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
       },
       {
         id: 6,
         name: "Abilene Bevis",
         email: "abilene.bevis@publicisgroupe.com",
         password: "l66kj5ggcxz",
+        media:
+          "https://images.unsplash.com/photo-1484863137850-59afcfe05386?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
       },
       {
         id: 7,
         name: "Evonne Isadora",
         email: "evonne.isadora@publicisgroupe.com",
         password: "vdava3fe2",
+        media:
+          " https://images.unsplash.com/photo-1499887142886-791eca5918cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
       },
       {
         id: 8,
         name: "Madeleine Anson",
         email: "madeleine.anson@publicisgroupe.com",
         password: "hnjnmszzsr43ww",
+        media:
+          "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
       },
       {
         id: 9,
         name: "Jennifer Christy",
         email: "jennifer.christy@publicisgroupe.com",
         password: "53b4ehrwb35",
+        media:
+          "https://images.unsplash.com/photo-1522228115018-d838bcce5c3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
       },
     ];
 

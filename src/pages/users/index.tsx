@@ -3,6 +3,7 @@ import { ApiClient, User } from "../../api-client";
 import Loader from "../../components/loader";
 import { ColumnsType } from "antd/es/table";
 import TableComponent from "../../components/table";
+import { Wrapper } from "./style";
 
 const Users = () => {
   const [users, setUser] = useState<User[]>([]);
@@ -24,6 +25,12 @@ const Users = () => {
   }, []);
 
   const columns: ColumnsType<User> = [
+    {
+      title: "",
+      dataIndex: "media",
+      key: "media",
+      render: (media) => <img src={media} />,
+    },
     {
       title: "Name",
       dataIndex: "name",
@@ -49,10 +56,10 @@ const Users = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <h1>Users</h1>
       <TableComponent data={data} columns={columns} />
-    </div>
+    </Wrapper>
   );
 };
 

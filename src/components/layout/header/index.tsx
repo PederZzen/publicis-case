@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Wrapper } from "./style";
 import { Modal } from "antd";
 import Login from "../../login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuIcon from "./menuIcon";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
   const user = localStorage.getItem("name");
   const { windowWidth } = useWindowWidth();
 
@@ -24,6 +25,10 @@ const Header = () => {
     localStorage.clear();
     window.location.reload();
   };
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location]);
 
   const loggedIn = (
     <div>

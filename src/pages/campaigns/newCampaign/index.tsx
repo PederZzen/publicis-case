@@ -1,7 +1,10 @@
-import { DatePicker, Form, InputNumber, Modal } from "antd";
+import { DatePicker, Form, InputNumber } from "antd";
 import Input from "antd/es/input/Input";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "../../../components/loader";
+import { ClipLoader, PacmanLoader, SyncLoader } from "react-spinners";
+import { colors } from "../../../utils/constants";
 
 interface NewCampaignProps {
   onCloseModal: () => void;
@@ -12,7 +15,6 @@ const NewCampaign: React.FC<NewCampaignProps> = ({ onCloseModal }) => {
   const user = localStorage.getItem("name");
   const email = localStorage.getItem("email");
   const [submit, setSubmit] = useState(false);
-  const [newCampaign, setNewCampaign] = useState({});
 
   const submitData = (data: any) => {
     const startDate = dayjs(data.date[0].$d).format("YYYY-MM-DD");
@@ -31,19 +33,27 @@ const NewCampaign: React.FC<NewCampaignProps> = ({ onCloseModal }) => {
     };
 
     console.log(campaignData);
-    setNewCampaign(campaignData);
-
     setSubmit(true);
   };
-
   if (submit) {
     setTimeout(() => {
       onCloseModal();
       window.location.reload();
+      setSubmit(false);
     }, 5000);
     return (
-      <div>
-        <p></p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1rem",
+          marginBottom: "2rem",
+        }}
+      >
+        <p>Submitting...</p>
+        <PacmanLoader size={15} color={colors.second} />
+        <p>See console for data</p>
       </div>
     );
   }
@@ -66,6 +76,7 @@ const NewCampaign: React.FC<NewCampaignProps> = ({ onCloseModal }) => {
       <Form.Item>
         <button className="button">Add campaign</button>
       </Form.Item>
+      <p>* See console for data</p>
     </Form>
   );
 };

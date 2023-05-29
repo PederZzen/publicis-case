@@ -45,7 +45,8 @@ export const Wrapper = styled.div`
     top: -1rem;
     background-color: ${colors.main};
     height: 3.5rem;
-    border-radius: 0 0 0.5rem 0;
+    border-radius: 0.5rem 0 0 0;
+    transform: rotate(180deg);
 
     svg {
       width: 3.5rem;

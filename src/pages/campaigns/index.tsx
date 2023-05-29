@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { ApiClient, Campaign } from "../../api-client";
 import Loader from "../../components/loader";
-import { Wrapper } from "./style";
 import TableComponent from "../../components/table";
 import { ColumnsType } from "antd/es/table";
 import { Modal } from "antd";
 import NewCampaign from "./newCampaign";
+import { PageWrapper, Search } from "../../globalStyles";
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const user = localStorage.getItem("name");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -86,7 +87,13 @@ const Campaigns = () => {
     },
   ];
 
-  const data: Campaign[] = campaigns;
+  const filterCampaigns = campaigns.filter((campaign) => {
+    return (
+      campaign.client.name.toLowerCase().includes(query.toLowerCase()) ||
+      campaign.name.toLowerCase().includes(query.toLowerCase()) ||
+      campaign.campaignManager.name.toLowerCase().includes(query.toLowerCase())
+    );
+  });
 
   if (isLoading) {
     return <Loader />;
@@ -97,15 +104,22 @@ const Campaigns = () => {
   }
 
   return (
-    <Wrapper>
+    <PageWrapper>
       <h1>Campaigns</h1>
-      {user ? (
-        <button onClick={showModal} className="button">
-          Add campaign
-        </button>
-      ) : (
-        ""
-      )}
+      <div className="flex-row-space">
+        <Search
+          placeholder="Search.."
+          type="text"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        {user ? (
+          <button onClick={showModal} className="button">
+            Add campaign
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
       <Modal
         title="Add campaign"
         open={isModalOpen}
@@ -113,10 +127,10 @@ const Campaigns = () => {
         onCancel={handleCancel}
         footer={false}
       >
-        <NewCampaign />
+        <NewCampaign onCloseModal={handleCancel} />
       </Modal>
-      <TableComponent data={data} columns={columns} />
-    </Wrapper>
+      <TableComponent data={filterCampaigns} columns={columns} />
+    </PageWrapper>
   );
 };
 

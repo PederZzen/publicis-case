@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { colors } from "./utils/constants";
 
 export const GlobalStyle = createGlobalStyle`
@@ -28,4 +28,35 @@ export const GlobalStyle = createGlobalStyle`
             filter: brightness(120%);
         }
     }
+
+    .flex-row-space {
+        display: flex;
+        justify-content: space-between;
+    }
+`;
+
+export const PageWrapper = styled.div`
+  margin: 0 0.5rem;
+  padding-top: 1rem;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+`;
+
+export const Search = styled.input`
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 2rem;
+  outline: none;
+  border: 1px solid gray;
+  background-color: #fafafa;
+  transition: all 0.3s;
+
+  &:focus {
+    box-shadow: 0 0 10px -5px black;
+  }
 `;

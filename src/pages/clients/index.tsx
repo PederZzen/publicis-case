@@ -3,7 +3,7 @@ import { ApiClient, Client } from "../../api-client";
 import Loader from "../../components/loader";
 import { ColumnsType } from "antd/es/table";
 import TableComponent from "../../components/table";
-import { Wrapper } from "./style";
+import { PageWrapper } from "../../globalStyles";
 
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
@@ -58,10 +58,10 @@ const Clients = () => {
   }
 
   return (
-    <Wrapper>
+    <PageWrapper>
       <h1>Clients</h1>
       <TableComponent data={data} columns={columns} />
-    </Wrapper>
+    </PageWrapper>
   );
 };
 

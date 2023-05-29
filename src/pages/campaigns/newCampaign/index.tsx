@@ -1,18 +1,18 @@
-import { DatePicker, Form, InputNumber } from "antd";
+import { DatePicker, Form, InputNumber, Modal } from "antd";
 import Input from "antd/es/input/Input";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const NewCampaign = () => {
+interface NewCampaignProps {
+  onCloseModal: () => void;
+}
+
+const NewCampaign: React.FC<NewCampaignProps> = ({ onCloseModal }) => {
   const { RangePicker } = DatePicker;
-  const [value, setValue] = useState("");
-
-  useEffect(() => {
-    const user = localStorage.getItem("name");
-    if (user) {
-      setValue(user);
-    }
-  }, []);
+  const user = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
+  const [submit, setSubmit] = useState(false);
+  const [newCampaign, setNewCampaign] = useState({});
 
   const submitData = (data: any) => {
     const startDate = dayjs(data.date[0].$d).format("YYYY-MM-DD");
@@ -23,15 +23,34 @@ const NewCampaign = () => {
       client: data.client,
       startDate: startDate,
       endDate: endDate,
-      campaignManager: data.campaignManager,
+      campaignManager: {
+        name: user,
+        email: email,
+      },
       budget: data.budget,
     };
 
     console.log(campaignData);
+    setNewCampaign(campaignData);
+
+    setSubmit(true);
   };
+
+  if (submit) {
+    setTimeout(() => {
+      onCloseModal();
+      window.location.reload();
+    }, 5000);
+    return (
+      <div>
+        <p></p>
+      </div>
+    );
+  }
 
   return (
     <Form onFinish={submitData}>
+      <p style={{ marginBottom: "1rem" }}>{user}</p>
       <Form.Item name={"campaign"}>
         <Input placeholder="Campaign" size="large" required />
       </Form.Item>
@@ -40,14 +59,6 @@ const NewCampaign = () => {
       </Form.Item>
       <Form.Item name={"date"}>
         <RangePicker size="large" style={{ width: "100%" }} aria-required />
-      </Form.Item>
-      <Form.Item name={"campaignManager"}>
-        <Input
-          placeholder="Campaign manager"
-          value={value}
-          size="large"
-          required
-        />
       </Form.Item>
       <Form.Item name={"budget"}>
         <InputNumber placeholder="Budget" min={0} size="large" required />
